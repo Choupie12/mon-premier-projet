@@ -6,3 +6,4 @@ Nouvelle fonctionnalité en cours de développement.
 je veux faire des tests.
 Je vais créer un conflit
 On verra si ça marche.
+Modification effectuée sur master.

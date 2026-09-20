@@ -7,3 +7,4 @@ je veux faire des tests.
 Je vais créer un conflit
 On verra si ça marche.
 Modification effectuée sur master.
+Fonctionnalité développée dans une Pull Request.

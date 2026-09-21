@@ -9,3 +9,4 @@ On verra si ça marche.
 Modification effectuée sur master.
 Fonctionnalité développée dans une Pull Request.
 Version 1.1.0
+Correction du bug de la version 1.1.0.

@@ -15,4 +15,4 @@ Fonctionnalité développée sur une branche dédiée.
 Documentation ajoutée dans le TP final.
 Workflow Git/GitHub validé.
 
-Modification pour tester le déclencheur Poll SCM de Jenkins.
+Modification pour tester le déclencheur Poll SCM de Jenkins..;

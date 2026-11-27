@@ -5,33 +5,33 @@ pipeline {
         label 'docker-agent'
     }
 
+    environment {
+        APP_NAME = 'mon-application'
+        APP_ENV = 'development'
+    }
+
     stages {
 
         stage('Checkout') {
             steps {
                 echo 'Recuperation du code source'
                 sh '''
-                    echo "Repertoire de travail :"
-                    pwd
-
-                    echo "Fichiers du projet :"
-                    ls -la
+                    echo "Job Jenkins : $JOB_NAME"
+                    echo "Numero du build : $BUILD_NUMBER"
+                    echo "Workspace : $WORKSPACE"
+                    echo "Nom application : $APP_NAME"
+                    echo "Environnement : $APP_ENV"
                 '''
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Construction de l application'
+                echo "Construction de ${env.APP_NAME}"
                 sh '''
                     mkdir -p build
-
-                    echo "Application construite par Jenkins" > build/application.txt
-
-                    echo "Contenu du repertoire build :"
-                    ls -l build
-
-                    echo "Contenu du fichier genere :"
+                    echo "Application : $APP_NAME" > build/application.txt
+                    echo "Environnement : $APP_ENV" >> build/application.txt
                     cat build/application.txt
                 '''
             }
@@ -42,25 +42,22 @@ pipeline {
                 echo 'Execution des tests'
                 sh '''
                     if [ -f build/application.txt ]; then
-                        echo "Test 1 : fichier application present - OK"
+                        echo "Test : application presente - OK"
                     else
-                        echo "Test 1 : fichier application absent - ECHEC"
+                        echo "Test : application absente - ECHEC"
                         exit 1
                     fi
-
-                    echo "Tous les tests sont passes."
                 '''
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploiement de l application'
+                echo "Deploiement de ${env.APP_NAME}"
                 sh '''
                     mkdir -p deployment
                     cp build/application.txt deployment/
-                    echo "Application deployee avec succes."
-                    ls -l deployment
+                    echo "Deploiement termine dans l environnement : $APP_ENV"
                 '''
             }
         }
